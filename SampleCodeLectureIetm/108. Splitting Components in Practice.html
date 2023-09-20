@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>REACT_Course</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+<style>
+/*********************  Section GO2TOP  ************************/
+div.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  background-color: #ddeedd;
+  border: 3px solid #73AD21;
+}
+
+/*********************  Section PERVNEXT buttons  ************************/
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/*********  special buttons style - cut corner **************/
+
+.button {
+  --border: 7px;    /* the border width */
+  --slant: 0.7em;   /* control the slanted corners */
+  --color: #3900A6; /* the color */
+  
+  font-size: 35px;
+  padding: 0.4em 1.2em;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--color);
+  background: 
+     linear-gradient(to bottom left,var(--color)  50%,#0000 50.1%) top right,
+     linear-gradient(to top   right,var(--color)  50%,#0000 50.1%) bottom left;
+  background-size: calc(var(--slant) + 1.3*var(--border)) calc(var(--slant) + 1.3*var(--border));
+  background-repeat: no-repeat;
+  box-shadow:
+    0 0 0 200px inset var(--s,#0000),
+    0 0 0 var(--border) inset var(--color);
+  clip-path: 
+      polygon(0 0, calc(100% - var(--slant)) 0, 100% var(--slant),
+              100% 100%, var(--slant) 100%,0 calc(100% - var(--slant))
+             );
+  transition: color var(--t,0.3s), background-size 0.3s;
+}
+.button:hover,
+.button:active{
+  background-size: 100% 100%;
+  color: #fff;
+  --t: 0.2s 0.1s;
+}
+.button:focus-visible {
+  outline-offset: calc(-1*var(--border));
+  outline: var(--border) solid #000a;
+}
+.button:active {
+  --s: #0005;
+  transition: none;
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- Ionic icons CDN -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+	<h2><a id="top"></a></h2>
+	<blockquote>
+		
+		<h1>108. Splitting Components in Practice</h1><br>
+		<h2>Ref: section10-L108</h2><br>
+		<div class="pCaption" align="center"><img width="70%" src="Images/titleS10L108.jpg"></div>
+		<br><br>
+		<h3>Legend:</h3>
+		<div class="pSmartBullet1">
+			<ul class="pSmartBullet1">
+				<li><a href="#wp65276">project folder organization</a></li>
+				<li><a href="#wp65277">project main elements - prime</a></li>
+				<li><a href="#wp65278">project main components - declare titles</a></li>
+				<li><a href="#wp65279">nav-bar component</a></li>
+				<li><a href="#wp65280">main component</a></li>
+				<li><a href="#wp65281">ListBox component</a></li>
+				<li><a href="#wp65282">WatchedBox component</a></li>
+				<li><a href="#wp65283">project final components tree layout</a></li>
+				<li><a href="#wp65284">Lecture code</a></li>
+				<!--<li><a href="#wp65285">Lecture code</a></li>
+				<li><a href="#wp65286">#</a></li>
+				<li><a href="#wp65287">#</a></li>
+				<li><a href="#wp65288">#</a></li>
+				<li><a href="#wp65289">#</a></li>-->
+			</ul>
+		</div>
+		
+		<br><br>
+		<a name="wp65276"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide1.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide2.jpg"></div>
+		<br><br>
+		<a name="wp65277"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide3.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide4.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide5.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide6.jpg"></div>
+		<br><br>
+		<a name="wp65278"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide7.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide8.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide9.jpg"></div>
+		<br><br>
+		<a name="wp65279"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide10.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide11.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide12.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide13.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide14.jpg"></div>
+		<br><br>
+		<a name="wp65280"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide15.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide16.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide17.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide18.jpg"></div>
+		<br><br>
+		<a name="wp65281"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide19.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide20.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide21.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide22.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide23.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide24.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide25.jpg"></div>
+		<br><br>
+		<a name="wp65282"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide26.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide21.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide27.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide28.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide29.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide30.jpg"></div>
+		<br><br>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide31.jpg"></div>
+		<br><br>
+		<a name="wp65283"> </a>
+		<div class="pCaption" align="center"><img width="90%" src="Images/s10l108--slide32.jpg"></div>
+		<br><br>
+		
+	</blockquote>
+	
+	
+	<!-- special buttons section - lecture code printouts-->
+	<br><br>
+	<!-- special buttons section - lecture code detailed explanation
+	<a name="wp65281"> </a>
+	<a href="Images/s8L99--codespcl.pdf" class="button" style="--color:#69db3a;--slant:40px;--border:8px">Lecture code summary</a>
+	<br><br><br><br><br><br><br><br>  -->
+	<a name="wp65284"> </a>
+	 <a href="Images/s10L108--code.pdf" class="button">Lecture code</a>
+	<br><br><br><br><br><br>
+	
+			<!-- PERVNEXT btn section  -->
+	<a href="107. How to Split a UI Into Components.html" class="previous">&laquo; Previous</a>
+	<a href="#.html" class="next">Next &raquo;</a>
+
+<!-- scroll to top of document -->
+	<a href="#" class="gotopbtn">
+		<ion-icon name="arrow-up-outline"></ion-icon>
+	</a>
+	
+</body>
+</html>
